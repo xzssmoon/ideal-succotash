@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>inevby | Telegram Гарант — NFT Аренда</title>
-    <!-- Font Awesome 6 (free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>INEVBY | Нежная сила будущего ✨</title>
+    <!-- Google Fonts & Smooth Scrolling -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,670 +14,797 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 30%, #1a0a2e, #0a0115);
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-            color: #fff;
+            background: linear-gradient(135deg, #140c1f 0%, #1e142f 50%, #120b1e 100%);
+            font-family: 'Inter', sans-serif;
+            color: #f8f0ff;
             line-height: 1.5;
-            scroll-behavior: smooth;
-            position: relative;
+            overflow-x: hidden;
         }
 
-        /* Фиолетовая RGB анимация фона */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at 40% 50%, rgba(156, 0, 255, 0.12), rgba(75, 0, 130, 0.03) 70%);
-            pointer-events: none;
-            z-index: 0;
+        /* кастомный скролл */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2a1e3e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d48eff;
+            border-radius: 8px;
+        }
+
+        /* анимации */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 142, 255, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(212, 142, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 142, 255, 0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes giftShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(3deg); }
+            75% { transform: rotate(-3deg); }
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 2;
+            padding: 0 32px;
         }
 
-        /* Фиолетовая RGB анимация border */
-        @keyframes rgbBorderPurple {
-            0% {
-                border-color: rgb(156, 0, 255);
-                box-shadow: 0 0 8px rgba(156, 0, 255, 0.6);
-            }
-            33% {
-                border-color: rgb(186, 85, 211);
-                box-shadow: 0 0 12px rgba(186, 85, 211, 0.8);
-            }
-            66% {
-                border-color: rgb(128, 0, 255);
-                box-shadow: 0 0 10px rgba(156, 0, 255, 0.9);
-            }
-            100% {
-                border-color: rgb(156, 0, 255);
-                box-shadow: 0 0 8px rgba(156, 0, 255, 0.6);
-            }
-        }
-
-        /* language switcher */
-        .lang-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
+        /* header */
+        .navbar {
             display: flex;
-            gap: 10px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
-            padding: 8px 16px;
-            border-radius: 50px;
-            border: 1.5px solid;
-            animation: rgbBorderPurple 2s infinite ease;
-        }
-        .lang-btn {
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 6px 14px;
-            border-radius: 40px;
-            transition: 0.2s;
-            font-size: 0.9rem;
-        }
-        .lang-btn.active {
-            background: #9c00ff;
-            box-shadow: 0 0 12px #c154ff;
-        }
-        .lang-btn:hover:not(.active) {
-            background: rgba(156, 0, 255, 0.5);
-        }
-
-        /* header / hero */
-        .hero {
-            padding: 60px 0 40px;
-            text-align: center;
-            border-bottom: 1px solid rgba(156, 0, 255, 0.5);
-        }
-        .logo {
-            font-size: 4.2rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #FFFFFF, #c154ff, #9c00ff, #FFFFFF);
-            background-size: 300% 200%;
-            animation: purpleShine 4s ease infinite;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 12px;
-            text-shadow: 0 0 10px rgba(156, 0, 255, 0.4);
-        }
-        @keyframes purpleShine {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .tagline {
-            font-size: 1.2rem;
-            color: #d9b4ff;
-            margin-top: 8px;
-            text-shadow: 0 0 6px #9c00ff;
-        }
-        .badge-row {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin: 28px 0 16px;
-            flex-wrap: wrap;
-        }
-        .badge {
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
-            padding: 8px 24px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            border: 1.5px solid;
-            animation: rgbBorderPurple 2.5s infinite ease;
-            transition: 0.2s;
-        }
-        .badge i {
-            margin-right: 8px;
-            color: #c154ff;
-            text-shadow: 0 0 5px #9c00ff;
-        }
-        .badge:hover {
-            transform: scale(1.05);
-            background: rgba(75, 0, 130, 0.8);
-        }
-
-        /* sections general */
-        section {
-            padding: 64px 0;
-            border-bottom: 1px solid rgba(156, 0, 255, 0.35);
-        }
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: -0.3px;
-            background: linear-gradient(120deg, #ffffff, #e0b0ff, #9c00ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-        .section-sub {
-            color: #e0c0ff;
-            max-width: 700px;
-            margin-bottom: 40px;
-            font-size: 1.05rem;
-        }
-
-        /* cards / stats */
-        .stats-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 32px;
-            margin: 32px 0 20px;
-            justify-content: center;
-        }
-        .stat-card {
-            background: linear-gradient(145deg, #1f1235, #0a0520);
-            border-radius: 40px;
-            padding: 32px 28px;
-            text-align: center;
-            flex: 1;
-            min-width: 180px;
-            border: 1.5px solid;
-            animation: rgbBorderPurple 2.5s infinite ease;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
-        }
-        .stat-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            background: linear-gradient(145deg, #2e1a50, #120a30);
-            box-shadow: 0 0 30px rgba(156, 0, 255, 0.6);
-        }
-        .stat-number {
-            font-size: 3.4rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #FFFFFF, #c154ff);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .stat-label {
-            font-size: 1rem;
-            color: #e7c8ff;
-            margin-top: 8px;
-            font-weight: 600;
-        }
-
-        /* steps */
-        .steps {
-            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0;
             flex-wrap: wrap;
             gap: 20px;
-            margin-top: 32px;
+            border-bottom: 1px solid rgba(212, 142, 255, 0.3);
         }
-        .step-item {
-            background: rgba(30, 15, 60, 0.85);
-            backdrop-filter: blur(12px);
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff0ff, #f0b3ff, #e695ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+        .logo span {
+            background: linear-gradient(135deg, #ffb3f0, #ff80e6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #e5d0ff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffb3f5;
+            text-shadow: 0 0 8px rgba(255, 179, 245, 0.5);
+        }
+
+        /* hero */
+        .hero {
+            padding: 70px 0 50px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .gift-decoration {
+            position: absolute;
+            top: 20px;
+            right: 5%;
+            font-size: 48px;
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .gift-decoration:hover {
+            animation: giftShake 0.5s ease-in-out;
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(212, 142, 255, 0.2);
+            backdrop-filter: blur(4px);
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #f3c9ff;
+            margin-bottom: 28px;
+            border: 1px solid rgba(230, 149, 255, 0.5);
+            letter-spacing: 0.3px;
+        }
+        h1 {
+            font-size: clamp(44px, 8vw, 80px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #ffffff, #ffd6ff, #f5a9ff, #e58eff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-desc {
+            font-size: 18px;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            color: #e2ceff;
+            font-weight: 400;
+        }
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #c26eff, #e38eff);
+            border: none;
+            padding: 14px 36px;
+            border-radius: 48px;
+            font-weight: 600;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(194, 110, 255, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(212, 142, 255, 0.5);
+            background: linear-gradient(135deg, #d47eff, #ec9eff);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #b77be0;
+            padding: 14px 36px;
+            border-radius: 48px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #f3e2ff;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            border-color: #ffbef0;
+            color: white;
+            background: rgba(212, 142, 255, 0.15);
+            backdrop-filter: blur(4px);
+        }
+
+        /* секция возможностей */
+        .section {
+            padding: 80px 0 60px;
+        }
+        .section-title {
+            font-size: 38px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #ffecff, #eac0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+        .section-sub {
+            text-align: center;
+            color: #cfb5f0;
+            max-width: 620px;
+            margin: 0 auto 56px;
+            font-size: 18px;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: rgba(46, 30, 70, 0.55);
+            backdrop-filter: blur(8px);
             border-radius: 32px;
-            padding: 24px 20px;
-            flex: 1;
-            min-width: 160px;
-            border: 1.5px solid;
-            animation: rgbBorderPurple 2.2s infinite ease;
-            transition: all 0.25s;
+            padding: 32px 24px;
+            border: 1px solid rgba(212, 142, 255, 0.35);
+            transition: all 0.35s ease;
             position: relative;
             overflow: hidden;
         }
-        .step-item::before {
-            content: '';
+        .card::before {
+            content: "🎁";
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(156, 0, 255, 0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.4s;
+            bottom: -20px;
+            right: -20px;
+            font-size: 80px;
+            opacity: 0.05;
             pointer-events: none;
         }
-        .step-item:hover::before {
-            opacity: 1;
+        .card:hover {
+            border-color: rgba(230, 149, 255, 0.8);
+            transform: translateY(-8px);
+            background: rgba(66, 44, 98, 0.7);
+            box-shadow: 0 20px 35px -12px rgba(194, 110, 255, 0.3);
         }
-        .step-item:hover {
-            transform: translateY(-5px);
-            background: #3a1f70;
-            box-shadow: 0 0 25px rgba(156, 0, 255, 0.5);
+        .card-icon {
+            font-size: 44px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 4px 8px rgba(212, 142, 255, 0.3));
         }
-        .step-num {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(145deg, #c154ff, #FFFFFF);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
+        .card h3 {
+            font-size: 24px;
             margin-bottom: 12px;
-        }
-        .step-text {
             font-weight: 600;
-            font-size: 1rem;
-            color: #f0e2ff;
+            color: #ffe4ff;
+        }
+        .card p {
+            color: #dccaff;
+            line-height: 1.5;
         }
 
-        /* контакты grid */
-        .contacts-grid {
+        /* форма подписки с подарком */
+        .subscribe-area {
+            background: linear-gradient(135deg, rgba(81, 51, 119, 0.6), rgba(55, 32, 86, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 56px;
+            padding: 56px 40px;
+            margin: 40px 0 20px;
+            border: 1px solid rgba(230, 149, 255, 0.5);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .gift-sparkle {
+            position: absolute;
+            top: -30px;
+            left: -30px;
+            font-size: 140px;
+            opacity: 0.15;
+            pointer-events: none;
+            transform: rotate(-15deg);
+        }
+        .subscribe-title {
+            font-size: 34px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffd6ff, #ffb3e6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-family: 'Playfair Display', serif;
+        }
+        .subscribe-desc {
+            margin-bottom: 32px;
+            color: #e9d5ff;
+            font-size: 17px;
+        }
+        .form-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            margin: 32px 0 24px;
+            justify-content: center;
+            gap: 16px;
+            max-width: 540px;
+            margin: 0 auto;
         }
-        .contact-card {
-            background: rgba(25, 15, 55, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 48px;
-            padding: 18px 28px;
+        .form-group input {
             flex: 1;
-            min-width: 180px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            transition: all 0.3s;
-            text-decoration: none;
-            color: #ffffff;
-            border: 1.5px solid;
-            animation: rgbBorderPurple 2.4s infinite ease;
-            position: relative;
-        }
-        .contact-card i {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 4px #c154ff);
+            min-width: 240px;
+            padding: 16px 24px;
+            border-radius: 60px;
+            border: none;
+            background: #2c1e46;
+            border: 1px solid #aa74db;
+            color: #ffefff;
+            font-size: 16px;
+            outline: none;
             transition: 0.2s;
         }
-        .contact-info h4 {
-            font-size: 1.1rem;
+        .form-group input:focus {
+            border-color: #f2a2ff;
+            box-shadow: 0 0 0 3px rgba(242, 162, 255, 0.3);
+        }
+        .form-group input::placeholder {
+            color: #b695e6;
+        }
+        .form-group button {
+            background: linear-gradient(135deg, #cd7cff, #f09dff);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 60px;
             font-weight: 700;
-            color: #e7ccff;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(205, 124, 255, 0.4);
         }
-        .contact-info p {
-            font-size: 0.85rem;
-            color: #cf9eff;
+        .form-group button:hover {
+            transform: scale(0.98);
+            background: linear-gradient(135deg, #d98eff, #ffabff);
         }
-        .contact-card:hover {
-            transform: scale(1.02) translateY(-5px);
-            background: #4a2a8a;
-            box-shadow: 0 0 35px rgba(156, 0, 255, 0.7);
-            border-color: #c154ff;
+        .success-msg {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #f0b6ff;
+            display: none;
+            background: rgba(92, 52, 138, 0.5);
+            padding: 10px 20px;
+            border-radius: 40px;
+            display: inline-block;
+            width: auto;
         }
-        .contact-card:hover i {
-            filter: drop-shadow(0 0 12px #d48eff);
+        .error-msg {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ffc4bc;
+            display: none;
         }
 
-        /* wallet */
-        .wallet-box {
-            background: linear-gradient(135deg, #1f1235, #0a0520);
-            border-radius: 40px;
-            padding: 32px;
-            margin: 40px 0 20px;
-            border: 1.5px solid;
-            animation: rgbBorderPurple 2.5s infinite ease;
-            transition: 0.2s;
+        /* статистика */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 56px;
+            margin-top: 40px;
         }
-        .wallet-box:hover {
-            box-shadow: 0 0 35px rgba(156, 0, 255, 0.7);
+        .stat-item {
+            text-align: center;
         }
-        .wallet-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #cf9eff;
+        .stat-number {
+            font-size: 52px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffecff, #f2bcff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stat-label {
+            font-size: 16px;
+            color: #d7beff;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* дорожная карта с подарками */
+        .roadmap-card {
+            background: rgba(46, 30, 70, 0.55);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 28px;
+            border: 1px solid #b479e0;
+            transition: 0.3s;
+        }
+        .roadmap-card:hover {
+            border-color: #ffa3f0;
+            transform: translateY(-5px);
+        }
+        .roadmap-card h3 {
+            font-size: 26px;
+            color: #ffdcff;
             margin-bottom: 12px;
         }
-        .wallet-address {
-            font-family: monospace;
-            font-size: 1rem;
-            background: #0c0620;
-            padding: 16px 20px;
-            border-radius: 28px;
-            word-break: break-all;
-            border: 1px solid #c154ff;
-            color: #f0e2ff;
-        }
 
-        /* кнопки большие */
-        .big-button {
-            display: block;
+        /* футер */
+        footer {
+            border-top: 1px solid rgba(212, 142, 255, 0.3);
+            padding: 48px 0 32px;
+            margin-top: 40px;
             text-align: center;
-            background: linear-gradient(90deg, #8a2be2, #aa4cff, #c154ff, #aa4cff);
-            background-size: 250% 100%;
-            animation: rgbBorderPurple 1.8s infinite ease, gradientShiftPurple 2.2s infinite;
-            border: 2px solid;
-            border-color: #c154ff;
-            color: white;
-            font-weight: bold;
-            padding: 18px 32px;
-            border-radius: 80px;
-            cursor: pointer;
-            font-size: 1.3rem;
-            transition: 0.2s;
-            margin: 30px 0 20px;
+            color: #c8adec;
+            font-size: 14px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #e2ccff;
             text-decoration: none;
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 0 15px rgba(156, 0, 255, 0.7);
-        }
-        .big-button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 35px rgba(156, 0, 255, 1);
-            border-color: #ffffff;
-        }
-        @keyframes gradientShiftPurple {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        .copy-btn {
-            background: linear-gradient(90deg, #8a2be2, #aa4cff, #c154ff, #aa4cff);
-            background-size: 250% 100%;
-            animation: rgbBorderPurple 1.8s infinite ease, gradientShiftPurple 2.2s infinite;
-            border: 2px solid;
-            border-color: #c154ff;
-            color: white;
-            font-weight: bold;
-            padding: 12px 32px;
-            border-radius: 60px;
-            cursor: pointer;
-            font-size: 1rem;
             transition: 0.2s;
-            margin-top: 20px;
-            box-shadow: 0 0 12px rgba(156, 0, 255, 0.7);
         }
-        .copy-btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 0 28px rgba(156, 0, 255, 1);
-            border-color: #ffffff;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 0;
-            font-size: 0.85rem;
-            color: #d9b4ff;
-            border-top: 1px solid rgba(156, 0, 255, 0.4);
+        .footer-links a:hover {
+            color: #ffc0fb;
         }
 
         @media (max-width: 700px) {
             .container {
-                padding: 0 20px;
+                padding: 0 24px;
             }
-            .logo {
-                font-size: 3rem;
+            .navbar {
+                flex-direction: column;
             }
             .section-title {
-                font-size: 1.8rem;
+                font-size: 30px;
             }
-            .step-item, .contact-card {
-                min-width: 100%;
-            }
-            .big-button {
-                font-size: 1.1rem;
-                padding: 14px 20px;
-            }
-            .lang-switch {
-                top: 10px;
-                right: 10px;
-                padding: 5px 12px;
+            .subscribe-area {
+                padding: 40px 20px;
             }
         }
-
-        .fade-up {
+        .animate-on-scroll {
             opacity: 0;
             transform: translateY(25px);
-            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.1), transform 0.6s ease;
+            transition: opacity 0.8s ease, transform 0.7s ease;
         }
-        .fade-up.visible {
+        .animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .warning-text {
-            font-size: 0.75rem;
-            margin-top: 18px;
-            color: #d9b4ff;
+        
+        /* специальный бонус-подарок */
+        .gift-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #c96eff, #f29eff);
+            padding: 14px 24px;
+            border-radius: 48px;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.3);
         }
-        .service-btn-wrap {
-            text-align: center;
-            margin: 20px 0 10px;
+        .gift-notification.show {
+            transform: translateX(0);
         }
     </style>
 </head>
 <body>
 
-<!-- Language Switcher -->
-<div class="lang-switch">
-    <button class="lang-btn active" data-lang="ru">RU</button>
-    <button class="lang-btn" data-lang="en">EN</button>
-</div>
-
-<div class="hero">
-    <div class="container">
-        <div class="logo">inevby</div>
-        <div class="tagline" data-ru="Telegram Гарант" data-en="Telegram Guarantor">Telegram Гарант</div>
-        <div class="badge-row">
-            <span class="badge"><i class="fas fa-shield-alt"></i> <span data-ru="Безопасные сделки" data-en="Safe deals">Безопасные сделки</span></span>
-            <span class="badge"><i class="fas fa-percent"></i> <span data-ru="Комиссия 1%" data-en="Commission 1%">Комиссия 1%</span></span>
-        </div>
-    </div>
-</div>
-
 <div class="container">
-    <!-- Кто такой гарант? -->
-    <section>
-        <h2 class="section-title" data-ru="Кто такой гарант?" data-en="Who is a guarantor?">Кто такой гарант?</h2>
-        <p class="section-sub" data-ru="Гарант — это физическое лицо, компания или организация, которые официально подтверждают выполнение обязательств одной стороны перед другой. Проведено более 300+ успешных сделок." 
-           data-en="A guarantor is a person, company or organization that officially confirms the fulfillment of obligations by one party to another. Over 300+ successful transactions completed.">
-           Гарант — это физическое лицо, компания или организация, которые официально подтверждают выполнение обязательств одной стороны перед другой. Проведено более 300+ успешных сделок.</p>
-        
-        <div class="stats-row">
-            <div class="stat-card fade-up">
-                <div class="stat-number">300+</div>
-                <div class="stat-label" data-ru="Сделок" data-en="Deals">Сделок</div>
-            </div>
-            <div class="stat-card fade-up">
-                <div class="stat-number">100%</div>
-                <div class="stat-label" data-ru="Выплат" data-en="Payouts">Выплат</div>
-            </div>
+    <!-- навигация -->
+    <div class="navbar">
+        <div class="logo">INEV<span>BY</span> ✦</div>
+        <div class="nav-links">
+            <a href="#">Главная</a>
+            <a href="#vision">О нас</a>
+            <a href="#features">Магия технологий</a>
+            <a href="#contact">Подарок</a>
         </div>
-    </section>
-
-    <!-- Навигация -->
-    <section>
-        <h2 class="section-title" data-ru="Навигация" data-en="Navigation">Навигация</h2>
-        <div class="contacts-grid">
-            <a href="https://t.me/RentNftV" target="_blank" rel="noopener noreferrer" class="contact-card fade-up">
-                <i class="fab fa-telegram"></i>
-                <div class="contact-info">
-                    <h4 data-ru="Лучшая аренда NFT" data-en="Best NFT rental">Лучшая аренда NFT</h4>
-                    <p>@RentNftV</p>
-                </div>
-            </a>
-            <a href="https://t.me/inevbyadapter" target="_blank" rel="noopener noreferrer" class="contact-card fade-up">
-                <i class="fas fa-plug"></i>
-                <div class="contact-info">
-                    <h4 data-ru="Адаптер" data-en="Adapter">Адаптер</h4>
-                    <p>@inevbyadapter</p>
-                </div>
-            </a>
-            <a href="https://t.me/reviews_inevby" target="_blank" rel="noopener noreferrer" class="contact-card fade-up">
-                <i class="fas fa-star"></i>
-                <div class="contact-info">
-                    <h4 data-ru="Отзывы" data-en="Reviews">Отзывы</h4>
-                    <p>@reviews_inevby</p>
-                </div>
-            </a>
-            <a href="https://t.me/inevby" target="_blank" rel="noopener noreferrer" class="contact-card fade-up">
-                <i class="fas fa-user-circle"></i>
-                <div class="contact-info">
-                    <h4 data-ru="Личный кабинет" data-en="Personal account">Личный кабинет</h4>
-                    <p>@inevby</p>
-                </div>
-            </a>
-            <a href="https://t.me/inevbySpamBot" target="_blank" rel="noopener noreferrer" class="contact-card fade-up">
-                <i class="fas fa-robot"></i>
-                <div class="contact-info">
-                    <h4 data-ru="Если бан пишите в бота" data-en="If banned, write to bot">Если бан пишите в бота</h4>
-                    <p>@inevbySpamBot</p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    <!-- Мои услуги кнопка -->
-    <div class="service-btn-wrap">
-        <a href="https://t.me/riovby" target="_blank" class="big-button" style="max-width: 350px; display: inline-block;">
-            <i class="fas fa-crown"></i> <span data-ru="Мои услуги" data-en="My services">Мои услуги</span>
-        </a>
     </div>
 
-    <!-- Гарант сделок -->
-    <section>
-        <h2 class="section-title" data-ru="Гарант сделок" data-en="Deal Guarantor">Гарант сделок</h2>
-        <p class="section-sub" data-ru="Безопасность ваших активов — мой главный приоритет. Работаю честно и быстро." 
-           data-en="The safety of your assets is my top priority. I work honestly and quickly.">
-           Безопасность ваших активов — мой главный приоритет. Работаю честно и быстро.</p>
-        <div class="badge-row" style="justify-content: flex-start; margin-top: 0;">
-            <span class="badge" style="background: #1f1235; border-width: 1.5px;"><i class="fas fa-gem"></i> <span data-ru="Комиссия — 1%" data-en="Commission — 1%">Комиссия — 1%</span></span>
+    <!-- hero с подарком -->
+    <div class="hero">
+        <div class="gift-decoration" id="floatingGift">🎁✨</div>
+        <div class="badge">💖 Неизбежность нежности 💖</div>
+        <h1>Будущее,<br>которое дарит любовь</h1>
+        <p class="hero-desc">
+            INEVBY — пространство, где высокие технологии встречаются с заботой о каждом. <br>
+            Присоединяйся к сообществу, где твои мечты обретают форму.
+        </p>
+        <div class="cta-group">
+            <button class="btn-primary" id="exploreBtn">✨ Открыть мир ✨</button>
+            <button class="btn-outline" id="subscribeScrollBtn">🎁 Получить подарок 🎁</button>
         </div>
-    </section>
+    </div>
 
-    <!-- Как проходят сделки -->
-    <section>
-        <h2 class="section-title" data-ru="Как проходят сделки" data-en="How deals work">Как проходят сделки</h2>
-        <div class="steps">
-            <div class="step-item fade-up"><div class="step-num">1</div><div class="step-text" data-ru="Договариваетесь о сделке" data-en="Agree on the deal">Договариваетесь о сделке</div></div>
-            <div class="step-item fade-up"><div class="step-num">2</div><div class="step-text" data-ru="Пишете гаранту @inevby" data-en="Write to guarantor @inevby">Пишете гаранту @inevby</div></div>
-            <div class="step-item fade-up"><div class="step-num">3</div><div class="step-text" data-ru="Покупатель переводит оплату" data-en="Buyer transfers payment">Покупатель переводит оплату</div></div>
-            <div class="step-item fade-up"><div class="step-num">4</div><div class="step-text" data-ru="Продавец передает товар" data-en="Seller delivers the goods">Продавец передает товар</div></div>
-            <div class="step-item fade-up"><div class="step-num">5</div><div class="step-text" data-ru="Гарант выплачивает средства" data-en="Guarantor pays out funds">Гарант выплачивает средства</div></div>
+    <!-- цифры / достижения -->
+    <div class="section animate-on-scroll" id="vision">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">12K+</div>
+                <div class="stat-label">Сердец в сообществе</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Стран вдохновения</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9.5M</div>
+                <div class="stat-label">Моментов счастья/сек</div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Кошелек -->
-    <section style="border-bottom: none;">
-        <h2 class="section-title" data-ru="Кошелек" data-en="Wallet">Кошелек</h2>
-        <div class="wallet-box fade-up">
-            <div class="wallet-label"><i class="fas fa-wallet"></i> 🟣 <span data-ru="Адрес для переводов (USDT / TON)" data-en="Address for transfers (USDT / TON)">Адрес для переводов (USDT / TON)</span></div>
-            <div class="wallet-address" id="walletAddress">UQDwCm-bkXJuTxcVP5fOvB3vi-myQlW7Yzl4naOE10uJcP5e</div>
-            <button class="copy-btn" id="copyWalletBtn"><i class="far fa-copy"></i> <span data-ru="Копировать адрес" data-en="Copy address">Копировать адрес</span></button>
-            <p class="warning-text">✨ Фиолетовая RGB защита | <span data-ru="Только после согласования с гарантом @inevby" data-en="Only after agreement with guarantor @inevby">Только после согласования с гарантом @inevby</span></p>
+    <!-- возможности / карточки с подарками -->
+    <div class="section" id="features">
+        <div class="section-title">Магия, доступная каждому</div>
+        <div class="section-sub">Мы дарим технологии, которые обнимают теплом и заботой.</div>
+        <div class="cards-grid">
+            <div class="card animate-on-scroll">
+                <div class="card-icon">🎀</div>
+                <h3>Ласковая сеть</h3>
+                <p>Мгновенный отклик с заботой о ресурсах. INEVBY Edge — нежность в каждом пакете данных.</p>
+            </div>
+            <div class="card animate-on-scroll">
+                <div class="card-icon">🧸</div>
+                <h3>Заботливые AI</h3>
+                <p>Твои личные помощники, которые понимают без слов и дарят вдохновение каждый день.</p>
+            </div>
+            <div class="card animate-on-scroll">
+                <div class="card-icon">💝</div>
+                <h3>Цифровое сердце</h3>
+                <p>Твоя идентичность под защитой, но открыта для любви и созидания. Безопасно и нежно.</p>
+            </div>
+            <div class="card animate-on-scroll">
+                <div class="card-icon">🎁</div>
+                <h3>Вселенная подарков</h3>
+                <p>Метавселенная, где каждый может создавать и дарить уникальные моменты радости.</p>
+            </div>
         </div>
-        
-        <!-- Большая кнопка Связь со мной -->
-        <div style="text-align: center; margin: 30px 0 20px;">
-            <a href="https://t.me/inevby" target="_blank" class="big-button" style="display: inline-block; max-width: 450px;">
-                <i class="fab fa-telegram"></i> <span data-ru="Связь со мной" data-en="Contact me">Связь со мной</span>
-            </a>
+    </div>
+
+    <!-- форма подписки с подарком -->
+    <div class="subscribe-area animate-on-scroll" id="contact">
+        <div class="gift-sparkle">🎀✨🎁</div>
+        <div class="subscribe-title">Получи свой волшебный подарок</div>
+        <div class="subscribe-desc">Первые 1000 подписчиков получат эксклюзивный NFT-подарок и доступ к закрытому клубу INEVBY.</div>
+        <div class="form-group">
+            <input type="email" id="emailInput" placeholder="Твой email для подарка ✨" autocomplete="email">
+            <button id="subscribeBtn">Забрать подарок →</button>
         </div>
-    </section>
+        <div id="successMsg" class="success-msg" style="display: none;">🎁 Ура! Подарок уже летит к тебе на почту! 💖</div>
+        <div id="errorMsg" class="error-msg" style="display: none;">💔 Ой, кажется, email немного застеснялся. Напиши правильный адрес ❤️</div>
+    </div>
+
+    <!-- дорожная карта -->
+    <div class="section animate-on-scroll">
+        <div class="section-title">Путь подарков</div>
+        <div class="section-sub">Каждый этап — новая возможность получить что-то особенное.</div>
+        <div class="cards-grid" style="margin-top: 20px;">
+            <div class="roadmap-card">
+                <h3>🎀 Q2 2025</h3>
+                <p>Запуск «Лаборатории чудес» — тестовая сеть и первые подарки для участников.</p>
+            </div>
+            <div class="roadmap-card">
+                <h3>💖 Q4 2025</h3>
+                <p>AI-агенты с эмоциональным интеллектом. Открытый SDK для творцов.</p>
+            </div>
+            <div class="roadmap-card">
+                <h3>🎁 Q2 2026</h3>
+                <p>Глобальная сеть добра. Мультичейн-мосты и гранты для самых смелых идей.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">✨ О проекте</a>
+            <a href="#">💝 Подарочный фонд</a>
+            <a href="#">📖 Блог</a>
+            <a href="#">🌸 Политика заботы</a>
+            <a href="#">🎀 Поддержка</a>
+        </div>
+        <div>© 2025 INEVBY — пространство, где технологии дарят тепло. С любовью к каждому.</div>
+        <div style="margin-top: 12px; font-size: 12px;">🌙 xzssmoon.github.io/inevby | магия подарков ✨</div>
+    </footer>
 </div>
 
-<div class="footer">
-    <div class="container">
-        <p>© 2025 inevby — <span data-ru="Telegram Гарант" data-en="Telegram Guarantor">Telegram Гарант</span>. <span style="color:#c154ff;">🟣 <span data-ru="Надежность и скорость" data-en="Reliability and speed">Надежность и скорость</span> 🟣</span></p>
-        <p style="margin-top: 8px;">⚡️ <span data-ru="Безопасные сделки" data-en="Safe deals">Безопасные сделки</span> | <span data-ru="Гарант" data-en="Guarantor">Гарант</span> @inevby | 24/7</p>
-    </div>
+<div class="gift-notification" id="giftToast">
+    <span>🎁</span> У вас новый подарок! Нажми, чтобы забрать
 </div>
 
 <script>
-    // ========== Языковой переключатель ==========
-    let currentLang = 'ru';
-    
-    function setLanguage(lang) {
-        currentLang = lang;
-        document.querySelectorAll('[data-ru][data-en]').forEach(el => {
-            if (lang === 'ru') {
-                el.innerText = el.getAttribute('data-ru');
-            } else {
-                el.innerText = el.getAttribute('data-en');
-            }
-        });
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            if (btn.getAttribute('data-lang') === lang) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-    }
-    
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang);
-        });
-    });
-    
-    // ========== Кошелек ==========
-    const walletAddr = "UQDwCm-bkXJuTxcVP5fOvB3vi-myQlW7Yzl4naOE10uJcP5e";
-    const copyBtn = document.getElementById('copyWalletBtn');
-    const walletSpan = document.getElementById('walletAddress');
-    if(walletSpan) walletSpan.innerText = walletAddr;
+    (function() {
+        // Анимация появления при скролле
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        animatedElements.forEach(el => observer.observe(el));
 
-    copyBtn?.addEventListener('click', () => {
-        navigator.clipboard.writeText(walletAddr).then(() => {
-            const originalText = copyBtn.innerHTML;
-            copyBtn.innerHTML = '<i class="fas fa-check-circle"></i> ' + (currentLang === 'ru' ? 'Скопировано! ✨' : 'Copied! ✨');
-            copyBtn.style.animation = 'none';
-            copyBtn.style.transform = 'scale(1.02)';
-            setTimeout(() => {
-                copyBtn.innerHTML = originalText;
-                copyBtn.style.animation = '';
-                copyBtn.style.transform = '';
-            }, 1800);
-        }).catch(() => {
-            alert(currentLang === 'ru' ? '🟣 Скопируйте адрес вручную' : '🟣 Copy the address manually');
-        });
-    });
-
-    // анимация появления
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-on-scroll.visible {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
             }
-        });
-    }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
-    
-    fadeElements.forEach(el => observer.observe(el));
-    
-    setTimeout(() => {
-        fadeElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if(rect.top < window.innerHeight - 80) {
-                el.classList.add('visible');
-                observer.unobserve(el);
-            }
-        });
-    }, 100);
+        `;
+        document.head.appendChild(style);
 
-    // Фиолетовая RGB анимация для всех элементов
-    const allRgbElements = document.querySelectorAll('.badge, .stat-card, .step-item, .contact-card, .wallet-box, .copy-btn, .big-button, .lang-switch');
-    allRgbElements.forEach(el => {
-        if (!el.style.animation) {
-            el.style.animation = 'rgbBorderPurple 2.2s infinite ease';
+        // Логика формы подписки (подарок)
+        const emailInput = document.getElementById('emailInput');
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const successMsgDiv = document.getElementById('successMsg');
+        const errorMsgDiv = document.getElementById('errorMsg');
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+            return re.test(email.trim());
         }
-    });
+
+        function showSuccess() {
+            successMsgDiv.style.display = 'inline-block';
+            errorMsgDiv.style.display = 'none';
+            setTimeout(() => {
+                successMsgDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showError() {
+            errorMsgDiv.style.display = 'block';
+            successMsgDiv.style.display = 'none';
+            setTimeout(() => {
+                errorMsgDiv.style.display = 'none';
+            }, 4000);
+        }
+
+        function handleSubscribe() {
+            const email = emailInput.value;
+            if (!validateEmail(email)) {
+                showError();
+                return;
+            }
+            let subscriptions = JSON.parse(localStorage.getItem('inevby_subs_gift') || '[]');
+            if (!subscriptions.includes(email)) {
+                subscriptions.push(email);
+                localStorage.setItem('inevby_subs_gift', JSON.stringify(subscriptions));
+            }
+            showSuccess();
+            emailInput.value = '';
+            showGiftToastMessage();
+            console.log(`[INEVBY] Подарок отправлен на ${email}`);
+        }
+
+        subscribeBtn.addEventListener('click', handleSubscribe);
+        emailInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSubscribe();
+        });
+
+        // скроллы
+        const exploreBtn = document.getElementById('exploreBtn');
+        exploreBtn?.addEventListener('click', () => {
+            document.getElementById('features')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        const subscribeScrollBtn = document.getElementById('subscribeScrollBtn');
+        subscribeScrollBtn?.addEventListener('click', () => {
+            document.querySelector('.subscribe-area')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            emailInput.focus();
+        });
+
+        // уведомление-подарок
+        const giftToast = document.getElementById('giftToast');
+        function showGiftToastMessage() {
+            giftToast.classList.add('show');
+            setTimeout(() => {
+                giftToast.classList.remove('show');
+            }, 4000);
+        }
+        
+        // плавающий подарок анимация и клик
+        const floatingGift = document.getElementById('floatingGift');
+        floatingGift?.addEventListener('click', () => {
+            document.querySelector('.subscribe-area')?.scrollIntoView({ behavior: 'smooth' });
+            showGiftToastMessage();
+        });
+        
+        giftToast?.addEventListener('click', () => {
+            document.querySelector('.subscribe-area')?.scrollIntoView({ behavior: 'smooth' });
+            giftToast.classList.remove('show');
+        });
+
+        // эффект для карточек
+        const cards = document.querySelectorAll('.card, .roadmap-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 35;
+                const rotateY = (centerX - x) / 35;
+                card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // счетчики
+        const statNumbers = document.querySelectorAll('.stat-number');
+        function startCounters() {
+            statNumbers.forEach(el => {
+                const rawText = el.innerText;
+                let targetNum = 0;
+                if (rawText.includes('K')) targetNum = parseFloat(rawText) * 1000;
+                else if (rawText.includes('M')) targetNum = parseFloat(rawText) * 1000000;
+                else targetNum = parseInt(rawText) || 0;
+                if (targetNum && !el.getAttribute('data-counted')) {
+                    el.setAttribute('data-counted', 'true');
+                    let current = 0;
+                    const step = Math.ceil(targetNum / 45);
+                    const interval = setInterval(() => {
+                        current += step;
+                        if (current >= targetNum) {
+                            clearInterval(interval);
+                            if (rawText.includes('K')) el.innerText = (targetNum / 1000).toFixed(0) + 'K+';
+                            else if (rawText.includes('M')) el.innerText = (targetNum / 1000000).toFixed(1) + 'M';
+                            else el.innerText = targetNum.toLocaleString() + '+';
+                        } else {
+                            if (rawText.includes('K')) el.innerText = Math.floor(current / 1000) + 'K+';
+                            else if (rawText.includes('M')) el.innerText = (current / 1000000).toFixed(1) + 'M';
+                            else el.innerText = current.toLocaleString() + '+';
+                        }
+                    }, 20);
+                }
+            });
+        }
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) { startCounters(); statsObserver.disconnect(); }
+        }, { threshold: 0.3 });
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) statsObserver.observe(statsSection);
+        
+        // год в футере
+        const footerText = document.querySelector('footer div:first-of-type + div');
+        if (footerText) footerText.innerText = footerText.innerText.replace('2025', new Date().getFullYear());
+        
+        // легкое поздравление при загрузке
+        setTimeout(() => {
+            if(!localStorage.getItem('inevby_welcome_gift')) {
+                showGiftToastMessage();
+                localStorage.setItem('inevby_welcome_gift', 'true');
+            }
+        }, 1500);
+    })();
 </script>
 </body>
 </html>
