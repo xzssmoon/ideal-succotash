@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>INEVBY | Будущее начинается здесь</title>
+    <!-- Google Fonts & Smooth Scrolling -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0712;
+            font-family: 'Inter', sans-serif;
+            color: #f5efff;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* кастомный скролл */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e172b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a55ad4;
+            border-radius: 8px;
+        }
+
+        /* анимации */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(193, 84, 240, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 12px rgba(193, 84, 240, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(193, 84, 240, 0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(165, 90, 212, 0.25);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #FFFFFF, #e9a0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            color: #c45ef7;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #d9caff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: #e5aaff;
+        }
+
+        /* hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(193, 84, 240, 0.18);
+            backdrop-filter: blur(2px);
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #e9bbff;
+            margin-bottom: 28px;
+            border: 0.5px solid rgba(197, 110, 245, 0.4);
+        }
+        h1 {
+            font-size: clamp(42px, 8vw, 76px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #ffffff, #f0c6ff, #da8eff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+        }
+        .hero-desc {
+            font-size: 18px;
+            max-width: 640px;
+            margin: 0 auto 32px;
+            color: #cfc1e6;
+            font-weight: 400;
+        }
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #b351e3;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 48px;
+            font-weight: 600;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(179, 81, 227, 0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: #c46af5;
+            transform: scale(1.02);
+            box-shadow: 0 10px 22px -5px rgba(179, 81, 227, 0.6);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #9468c4;
+            padding: 14px 32px;
+            border-radius: 48px;
+            font-weight: 600;
+            font-size: 16px;
+            color: #ecdaff;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            border-color: #d994ff;
+            color: white;
+            background: rgba(179, 81, 227, 0.1);
+        }
+
+        /* секция возможностей */
+        .section {
+            padding: 90px 0 60px;
+        }
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+            color: #f3e6ff;
+        }
+        .section-sub {
+            text-align: center;
+            color: #c5b2e6;
+            max-width: 620px;
+            margin: 0 auto 56px;
+            font-size: 18px;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .card {
+            background: rgba(33, 22, 55, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 32px 24px;
+            border: 1px solid rgba(165, 90, 212, 0.35);
+            transition: all 0.25s;
+        }
+        .card:hover {
+            border-color: rgba(197, 110, 245, 0.7);
+            transform: translateY(-6px);
+            background: rgba(45, 30, 72, 0.85);
+            box-shadow: 0 12px 28px -8px rgba(179, 81, 227, 0.3);
+        }
+        .card-icon {
+            font-size: 42px;
+            margin-bottom: 24px;
+        }
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #f0e2ff;
+        }
+        .card p {
+            color: #cfbeea;
+            line-height: 1.5;
+        }
+
+        /* форма подписки */
+        .subscribe-area {
+            background: radial-gradient(circle at 20% 30%, #261d39, #0f0a1a);
+            border-radius: 48px;
+            padding: 56px 40px;
+            margin: 40px 0 20px;
+            border: 1px solid rgba(179, 81, 227, 0.45);
+            text-align: center;
+        }
+        .subscribe-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #f5e6ff;
+        }
+        .subscribe-desc {
+            margin-bottom: 32px;
+            color: #cfbbf0;
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .form-group input {
+            flex: 1;
+            min-width: 240px;
+            padding: 16px 24px;
+            border-radius: 60px;
+            border: none;
+            background: #1d152e;
+            border: 1px solid #7b4aa8;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 0.2s;
+        }
+        .form-group input:focus {
+            border-color: #c46af5;
+            box-shadow: 0 0 0 3px rgba(196, 106, 245, 0.25);
+        }
+        .form-group button {
+            background: #b351e3;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            color: white;
+            transition: 0.2s;
+        }
+        .form-group button:hover {
+            background: #c86eff;
+            transform: scale(0.98);
+        }
+        .success-msg {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #e2b0ff;
+            display: none;
+        }
+        .error-msg {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #ffb7b0;
+            display: none;
+        }
+
+        /* будущее (галерея цифр) */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f5eaff, #e1aaff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .stat-label {
+            font-size: 16px;
+            color: #c3abec;
+            margin-top: 8px;
+        }
+
+        /* футер */
+        footer {
+            border-top: 1px solid rgba(165, 90, 212, 0.3);
+            padding: 48px 0 32px;
+            margin-top: 40px;
+            text-align: center;
+            color: #b89fdf;
+            font-size: 14px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #c9b0f0;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: #e6bdff;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 0 24px;
+            }
+            .navbar {
+                flex-direction: column;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .subscribe-area {
+                padding: 40px 20px;
+            }
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.6s ease;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- навигация -->
+    <div class="navbar">
+        <div class="logo">INEV<span>BY</span></div>
+        <div class="nav-links">
+            <a href="#">Главная</a>
+            <a href="#vision">О нас</a>
+            <a href="#features">Технологии</a>
+            <a href="#contact">Сообщество</a>
+        </div>
+    </div>
+
+    <!-- hero -->
+    <div class="hero">
+        <div class="badge">✨ Революция в цифровой экосистеме</div>
+        <h1>Будущее,<br>которое наступает неизбежно</h1>
+        <p class="hero-desc">
+            INEVBY — это платформа нового поколения, объединяющая AI, децентрализацию и креативный потенциал.
+            Присоединяйтесь к сообществу, где рождаются инновации.
+        </p>
+        <div class="cta-group">
+            <button class="btn-primary" id="exploreBtn">Исследовать →</button>
+            <button class="btn-outline" id="subscribeScrollBtn">Получить доступ</button>
+        </div>
+    </div>
+
+    <!-- цифры / достижения -->
+    <div class="section animate-on-scroll" id="vision">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Активных участников</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">120+</div>
+                <div class="stat-label">Стран присутствия</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8.2M</div>
+                <div class="stat-label">Обработки данных/сек</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- возможности / карточки -->
+    <div class="section" id="features">
+        <div class="section-title">Технологии, меняющие правила</div>
+        <div class="section-sub">Мы строим инфраструктуру, где скорость, безопасность и открытость — не компромисс, а стандарт.</div>
+        <div class="cards-grid">
+            <div class="card animate-on-scroll">
+                <div class="card-icon">⚡</div>
+                <h3>Молниеносная сеть</h3>
+                <p>Протокол передачи данных с нулевой задержкой. INEVBY Edge гарантирует отклик менее 50 мс по всему миру.</p>
+            </div>
+            <div class="card animate-on-scroll">
+                <div class="card-icon">🧠</div>
+                <h3>Нейросетевые агенты</h3>
+                <p>Автономные AI-ассистенты, которые адаптируются под ваш стиль работы и предвосхищают задачи.</p>
+            </div>
+            <div class="card animate-on-scroll">
+                <div class="card-icon">🔗</div>
+                <h3>Децентрализованный ID</h3>
+                <p>Ваша цифровая личность под вашим полным контролем. Кросс-платформенная верификация без посредников.</p>
+            </div>
+            <div class="card animate-on-scroll">
+                <div class="card-icon">🌌</div>
+                <h3>Метавселенная INEV</h3>
+                <p>Стираем границы между физическим и виртуальным. Совместные пространства для работы и творчества.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- форма подписки (ядро) -->
+    <div class="subscribe-area animate-on-scroll" id="contact">
+        <div class="subscribe-title">Станьте частью неизбежного</div>
+        <div class="subscribe-desc">Первые 5000 участников получат эксклюзивный доступ к закрытому бета-тестированию и NFT-идентификатор.</div>
+        <div class="form-group">
+            <input type="email" id="emailInput" placeholder="Ваш электронный адрес" autocomplete="email">
+            <button id="subscribeBtn">Подписаться →</button>
+        </div>
+        <div id="successMsg" class="success-msg">✓ Отлично! Проверьте почту — мы отправили подтверждение.</div>
+        <div id="errorMsg" class="error-msg">⚠ Пожалуйста, введите корректный email.</div>
+    </div>
+
+    <!-- дорожная карта / будущие этапы -->
+    <div class="section animate-on-scroll">
+        <div class="section-title">Дорожная карта</div>
+        <div class="section-sub">Прозрачность и поступательное развитие — наш принцип</div>
+        <div class="cards-grid" style="margin-top: 20px;">
+            <div class="card">
+                <h3>Q2 2025</h3>
+                <p>Запуск тестовой сети INEVBY Core, релиз whitepaper v2 и набор первых валидаторов.</p>
+            </div>
+            <div class="card">
+                <h3>Q4 2025</h3>
+                <p>Интеграция AI-агентов в экосистему, открытый SDK для разработчиков.</p>
+            </div>
+            <div class="card">
+                <h3>Q2 2026</h3>
+                <p>Глобальный запуск основной сети, мультичейн-мосты и программа грантов.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Документация</a>
+            <a href="#">Вакансии</a>
+            <a href="#">Блог</a>
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Поддержка</a>
+        </div>
+        <div>© 2025 INEVBY — децентрализованная экосистема будущего. Все права защищены.</div>
+        <div style="margin-top: 12px; font-size: 12px;">🌐 xzssmoon.github.io/inevby | версия 2.0</div>
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // Анимация появления при скролле (Intersection Observer)
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+        animatedElements.forEach(el => observer.observe(el));
+
+        // заранее добавим небольшой класс для красоты: все элементы по умолчанию скрыты, пока не появится класс visible
+        animatedElements.forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(20px)";
+            el.style.transition = "opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.6s ease";
+        });
+        // переопределим через style, но чтобы не сломать, сделаем наблюдатель, который добавляет класс visible
+        // а CSS уже будет .animate-on-scroll.visible { opacity:1; transform:translateY(0); }
+        // добавим также для карточек дополнительные стили через динамику
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-on-scroll.visible {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ---- ЛОГИКА ФОРМЫ ПОДПИСКИ (без реального бэкенда, но с имитацией и валидацией) ----
+        const emailInput = document.getElementById('emailInput');
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const successMsgDiv = document.getElementById('successMsg');
+        const errorMsgDiv = document.getElementById('errorMsg');
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+            return re.test(email.trim());
+        }
+
+        function showSuccess() {
+            successMsgDiv.style.display = 'block';
+            errorMsgDiv.style.display = 'none';
+            setTimeout(() => {
+                successMsgDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function showError() {
+            errorMsgDiv.style.display = 'block';
+            successMsgDiv.style.display = 'none';
+            setTimeout(() => {
+                errorMsgDiv.style.display = 'none';
+            }, 4000);
+        }
+
+        function handleSubscribe() {
+            const email = emailInput.value;
+            if (!validateEmail(email)) {
+                showError();
+                return;
+            }
+            // Имитация успешной подписки — сохранение в localStorage для "эффекта памяти" и красивого UX
+            let subscriptions = JSON.parse(localStorage.getItem('inevby_subs') || '[]');
+            if (!subscriptions.includes(email)) {
+                subscriptions.push(email);
+                localStorage.setItem('inevby_subs', JSON.stringify(subscriptions));
+            }
+            // Анимация обратной связи
+            showSuccess();
+            emailInput.value = '';
+            console.log(`[INEVBY] New subscription: ${email}`);
+            // Дополнительно: кастомное событие (для гипотетической интеграции)
+            const event = new CustomEvent('inevby_subscribe', { detail: { email } });
+            document.dispatchEvent(event);
+        }
+
+        subscribeBtn.addEventListener('click', handleSubscribe);
+        emailInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleSubscribe();
+            }
+        });
+
+        // кнопка "Исследовать" скроллит к блоку features
+        const exploreBtn = document.getElementById('exploreBtn');
+        if (exploreBtn) {
+            exploreBtn.addEventListener('click', () => {
+                const featuresSection = document.getElementById('features');
+                if (featuresSection) {
+                    featuresSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        }
+        // кнопка "Получить доступ" в hero — скроллит к форме подписки
+        const subscribeScrollBtn = document.getElementById('subscribeScrollBtn');
+        if (subscribeScrollBtn) {
+            subscribeScrollBtn.addEventListener('click', () => {
+                const subscribeArea = document.querySelector('.subscribe-area');
+                if (subscribeArea) {
+                    subscribeArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    emailInput.focus();
+                }
+            });
+        }
+
+        // добавим динамический эффект для карточек: слегка параллакс при движении мыши (лёгкий штрих)
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 30;
+                const rotateY = (centerX - x) / 30;
+                card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                card.style.transition = 'transform 0.3s ease';
+                setTimeout(() => {
+                    card.style.transition = '';
+                }, 300);
+            });
+        });
+
+        // глобальная инициализация: проверка на сохранённые email (можно не выводить)
+        console.log('INEVBY — интерфейс загружен. Будущее неизбежно 🚀');
+
+        // лёгкий эффект наведения на статистику
+        const statNumbers = document.querySelectorAll('.stat-number');
+        statNumbers.forEach(stat => {
+            stat.addEventListener('mouseenter', () => {
+                stat.style.textShadow = '0 0 12px rgba(197, 110, 245, 0.8)';
+            });
+            stat.addEventListener('mouseleave', () => {
+                stat.style.textShadow = 'none';
+            });
+        });
+
+        // добавим динамический год в футере (автоматически)
+        const footerYear = document.querySelector('footer div:first-of-type + div');
+        if (footerYear) {
+            const currentYear = new Date().getFullYear();
+            if (footerYear.innerText.includes('2025')) {
+                footerYear.innerText = footerYear.innerText.replace('2025', currentYear);
+            }
+        }
+
+        // Создаём эффект появления счётчиков (дополнительный wow)
+        const statItems = document.querySelectorAll('.stat-number');
+        function startCounters() {
+            statItems.forEach(el => {
+                const rawText = el.innerText;
+                let targetNum = 0;
+                if (rawText.includes('K')) {
+                    let val = parseFloat(rawText);
+                    targetNum = val * 1000;
+                } else if (rawText.includes('M')) {
+                    let val = parseFloat(rawText);
+                    targetNum = val * 1000000;
+                } else {
+                    targetNum = parseInt(rawText) || 0;
+                }
+                if (targetNum && !el.getAttribute('data-counted')) {
+                    el.setAttribute('data-counted', 'true');
+                    let current = 0;
+                    const step = Math.ceil(targetNum / 40);
+                    const interval = setInterval(() => {
+                        current += step;
+                        if (current >= targetNum) {
+                            clearInterval(interval);
+                            if (rawText.includes('K')) el.innerText = (targetNum / 1000).toFixed(0) + 'K+';
+                            else if (rawText.includes('M')) el.innerText = (targetNum / 1000000).toFixed(1) + 'M';
+                            else el.innerText = targetNum.toLocaleString() + '+';
+                        } else {
+                            if (rawText.includes('K')) el.innerText = Math.floor(current / 1000) + 'K+';
+                            else if (rawText.includes('M')) el.innerText = (current / 1000000).toFixed(1) + 'M';
+                            else el.innerText = current.toLocaleString() + '+';
+                        }
+                    }, 18);
+                }
+            });
+        }
+        // запускаем счётчики, когда статистика в зоне видимости
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounters();
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        const statsSection = document.querySelector('.stats-grid');
+        if (statsSection) statsObserver.observe(statsSection);
+        else startCounters(); // fallback
+    })();
+</script>
+</body>
+</html>
